@@ -1,0 +1,678 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Sasi Ravipati</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: full-bleed 3D pipeline hero, then Netflix-style horizontal rows, a rotating layer stack, and a contact footer. Single dark look by choice. */
+:root {
+  --bg: #0a0a0c;
+  --panel: #16161b;
+  --panel-2: #1f1f26;
+  --fg: #f3f3f5;
+  --muted: #9b9ba6;
+  --red: #e50914;
+  --red-soft: #ff3b44;
+  --cyan: #38bdf8;
+  --good: #46d369;
+  --line: #2a2a33;
+  --font-display: "Bebas Neue", "Impact", "Arial Narrow", sans-serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-x: hidden;
+  padding-inline: 0;
+}
+a { color: inherit; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+.wrap { padding-inline: clamp(16px, 4vw, 56px); }
+
+/* NAV */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+  display: flex; align-items: center; gap: 28px;
+  padding: 14px clamp(16px, 4vw, 56px);
+  background: linear-gradient(to bottom, rgba(10,10,12,.92), rgba(10,10,12,0));
+  transition: background .3s;
+}
+.nav.solid { background: rgba(10,10,12,.96); border-bottom: 1px solid var(--line); }
+.logo { font-family: var(--font-display); font-size: 30px; letter-spacing: .04em; color: var(--red); line-height: 1; white-space: nowrap; }
+.nav-links { display: flex; gap: 20px; font-size: 14px; color: var(--muted); }
+.nav-links button { background: none; border: 0; padding: 4px 0; color: inherit; }
+.nav-links button:hover { color: var(--fg); }
+.nav .spacer { flex: 1; }
+.avatar { width: 32px; height: 32px; border-radius: 4px; background: var(--red); display: grid; place-items: center; font-family: var(--font-display); font-size: 20px; }
+@media (max-width: 720px) { .nav-links { display: none; } }
+
+/* HERO */
+.hero { position: relative; margin-top: -62px; padding-top: 62px; min-height: 620px; display: flex; align-items: center; overflow: hidden; }
+#stage { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(10,10,12,.94) 0%, rgba(10,10,12,.55) 42%, rgba(10,10,12,0) 70%),
+              linear-gradient(to top, var(--bg) 0%, rgba(10,10,12,0) 28%); }
+.hero-copy { position: relative; z-index: 2; max-width: 620px; padding-block: 80px 110px; }
+.badge-line { display: flex; align-items: center; gap: 10px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .22em; color: var(--muted); text-transform: uppercase; }
+.badge-line b { color: var(--red); font-family: var(--font-display); font-size: 26px; letter-spacing: .02em; font-weight: 400; }
+h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(64px, 12vw, 132px); line-height: .9; letter-spacing: .01em; margin: 10px 0 14px; text-wrap: balance; text-shadow: 0 6px 40px rgba(0,0,0,.7); }
+.meta { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; font-size: 14px; color: var(--muted); }
+.match { color: var(--good); font-weight: 700; }
+.chip-r { border: 1px solid #55555f; padding: 0 7px; border-radius: 3px; font-size: 12px; color: var(--fg); }
+.logline { margin: 18px 0 24px; font-size: clamp(16px, 2.1vw, 19px); max-width: 52ch; color: #dcdce2; }
+.btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 10px; border: 0; border-radius: 4px; padding: 10px 22px; font-weight: 700; font-size: 16px; }
+.btn.play { background: #fff; color: #000; }
+.btn.play:hover { background: #d9d9de; }
+.btn.info { background: rgba(120,120,135,.55); color: #fff; backdrop-filter: blur(6px); }
+.btn.info:hover { background: rgba(120,120,135,.8); }
+.pipe-tag { position: absolute; z-index: 2; right: clamp(16px, 4vw, 56px); bottom: 40px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .16em; color: var(--muted); text-transform: uppercase; text-align: right; }
+.pipe-tag span { color: var(--cyan); }
+@media (max-width: 720px) { .pipe-tag { display: none; } .hero::after { background: linear-gradient(90deg, rgba(10,10,12,.85), rgba(10,10,12,.35)), linear-gradient(to top, var(--bg), rgba(10,10,12,0) 30%); } }
+
+/* ROWS */
+.row { margin-top: -28px; padding-bottom: 28px; position: relative; z-index: 3; }
+.row + .row { margin-top: 0; }
+.row h2 { font-family: var(--font-display); font-weight: 400; font-size: 28px; letter-spacing: .04em; margin: 0 0 10px; padding-inline: clamp(16px, 4vw, 56px); display: flex; align-items: baseline; gap: 14px; }
+.row h2 small { font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; color: var(--muted); text-transform: uppercase; }
+.rail { position: relative; }
+.scroller { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x proximity; padding: 18px clamp(16px, 4vw, 56px) 26px; scrollbar-width: none; }
+.scroller::-webkit-scrollbar { display: none; }
+.arrow { position: absolute; top: 18px; bottom: 26px; width: clamp(36px, 4vw, 56px); z-index: 5; border: 0; background: rgba(10,10,12,.6); color: #fff; font-size: 30px; opacity: 0; transition: opacity .2s; display: grid; place-items: center; }
+.rail:hover .arrow { opacity: 1; }
+.arrow.l { left: 0; } .arrow.r { right: 0; }
+@media (hover: none) { .arrow { display: none; } }
+
+.card {
+  --rx: 0deg; --ry: 0deg; --s: 1;
+  flex: 0 0 auto; width: 280px; min-height: 300px; scroll-snap-align: start;
+  position: relative; text-align: left; border: 1px solid var(--line); border-radius: 6px; padding: 18px;
+  background:
+    radial-gradient(120% 90% at 100% 0%, hsl(var(--h) 70% 30% / .75), transparent 60%),
+    linear-gradient(160deg, var(--panel-2), var(--panel));
+  display: flex; flex-direction: column; gap: 8px;
+  transform: perspective(800px) rotateX(var(--rx)) rotateY(var(--ry)) scale(var(--s));
+  transition: transform .18s ease-out, border-color .2s, box-shadow .2s;
+  transform-style: preserve-3d;
+}
+.card:hover { --s: 1.04; border-color: #55555f; box-shadow: 0 24px 50px -10px rgba(0,0,0,.8); z-index: 4; }
+.card .tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; gap: 8px; }
+.card .tag .now { color: var(--good); }
+.card h3 { font-family: var(--font-display); font-weight: 400; font-size: 34px; line-height: 1; margin: 6px 0 0; letter-spacing: .02em; text-wrap: balance; transform: translateZ(30px); }
+.card .sub { color: #cfcfd6; font-size: 14px; }
+.card p { margin: 0; color: var(--muted); font-size: 13.5px; }
+.card .more { margin-top: auto; font-size: 13px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px; }
+.card .more i { font-style: normal; display: inline-grid; place-items: center; width: 24px; height: 24px; border: 1px solid #77778a; border-radius: 50%; font-size: 11px; }
+.card.wide { width: 340px; }
+
+/* TOP 10 */
+.top10 { display: flex; align-items: center; flex: 0 0 auto; scroll-snap-align: start; }
+.top10 .num { font-family: var(--font-display); font-size: 190px; line-height: .8; color: var(--bg); -webkit-text-stroke: 3px #6c6c78; margin-right: -26px; position: relative; z-index: 0; letter-spacing: -.04em; }
+.top10 .card { width: 150px; min-height: 220px; z-index: 1; padding: 14px; justify-content: flex-end; }
+.top10 .card h3 { font-size: 28px; }
+.top10 .card .tag { position: absolute; top: 14px; left: 14px; right: 14px; }
+
+/* STACK */
+.stack-sec { padding-block: 72px 64px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 32px; align-items: center; }
+.stack-copy h2 { padding: 0; font-size: clamp(36px, 5vw, 56px); line-height: .95; margin-bottom: 12px; display: block; }
+.stack-copy p { color: var(--muted); max-width: 46ch; }
+.stack-copy .kv { margin-top: 18px; display: grid; gap: 10px; }
+.kv button { text-align: left; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; display: grid; gap: 2px; }
+.kv button[aria-pressed="true"] { border-color: var(--red); background: var(--panel-2); }
+.kv strong { font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--cyan); font-weight: 500; }
+.kv span { font-size: 14px; color: #cfcfd6; }
+.iso { height: 540px; padding-top: 150px; perspective: 1400px; display: grid; place-items: center; position: relative; }
+.iso-scene { position: relative; width: 300px; height: 300px; transform-style: preserve-3d; transform: rotateX(var(--tx, 58deg)) rotateZ(var(--tz, -38deg)); transition: transform .15s ease-out; animation: float 7s ease-in-out infinite; }
+@keyframes float { 50% { margin-top: -14px; } }
+.plate { position: absolute; inset: 0; border: 1px solid; border-radius: 10px; display: grid; place-items: center; transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .3s; font-family: var(--font-display); font-size: 40px; letter-spacing: .06em; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,.6); }
+.plate small { display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-align: center; opacity: .85; }
+.plate.p1 { background: linear-gradient(135deg, rgba(56,189,248,.35), rgba(56,189,248,.12)); border-color: rgba(56,189,248,.7); transform: translateZ(0px); }
+.plate.p2 { background: linear-gradient(135deg, rgba(120,120,255,.35), rgba(120,120,255,.12)); border-color: rgba(150,150,255,.7); transform: translateZ(64px); }
+.plate.p3 { background: linear-gradient(135deg, rgba(229,9,20,.4), rgba(229,9,20,.14)); border-color: rgba(255,59,68,.8); transform: translateZ(128px); }
+.plate.p4 { background: linear-gradient(135deg, rgba(70,211,105,.35), rgba(70,211,105,.1)); border-color: rgba(70,211,105,.7); transform: translateZ(192px); }
+.iso.spread .p2 { transform: translateZ(100px); } .iso.spread .p3 { transform: translateZ(200px); } .iso.spread .p4 { transform: translateZ(300px); }
+.plate.on { box-shadow: 0 0 60px -6px currentColor; filter: brightness(1.35); }
+.plate.p1.on { color: var(--cyan); } .plate.p2.on { color: #9a9aff; } .plate.p3.on { color: var(--red-soft); } .plate.p4.on { color: var(--good); }
+@media (max-width: 860px) { .stack-sec { grid-template-columns: minmax(0, 1fr); } .iso { height: 480px; padding-top: 120px; } .iso-scene { transform: scale(.8) rotateX(var(--tx, 58deg)) rotateZ(var(--tz, -38deg)); } }
+
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; padding-bottom: 32px; }
+.skill-box { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 16px; }
+.skill-box h4 { margin: 0 0 10px; font-family: var(--font-mono); font-weight: 500; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill { font-size: 13px; background: var(--panel-2); border: 1px solid var(--line); border-radius: 99px; padding: 3px 11px; }
+.pill.hot { border-color: var(--red); color: #fff; }
+
+/* CONTACT */
+.contact { padding-block: 40px 56px; border-top: 1px solid var(--line); }
+.contact h2 { padding: 0; font-size: clamp(36px, 6vw, 64px); display: block; line-height: .95; }
+.contact p { color: var(--muted); max-width: 52ch; }
+.contact-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.copy { display: flex; align-items: center; gap: 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 8px 8px 8px 16px; min-width: 0; }
+.copy code { font-family: var(--font-mono); font-size: 14px; user-select: all; overflow-wrap: anywhere; }
+.copy button { background: var(--red); border: 0; border-radius: 4px; padding: 6px 12px; font-weight: 700; font-size: 13px; }
+.foot { padding-block: 20px 40px; color: var(--muted); font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+
+/* MODAL */
+.modal { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,.72); display: grid; place-items: start center; overflow-y: auto; padding: 4vh 16px; }
+.sheet { width: min(760px, 100%); background: var(--panel); border-radius: 8px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 30px 80px rgba(0,0,0,.8); animation: pop .25s ease-out; }
+@keyframes pop { from { transform: scale(.94); opacity: 0; } }
+.sheet-top { position: relative; padding: 56px 28px 22px; background: radial-gradient(120% 120% at 100% 0%, hsl(var(--h, 350) 75% 32% / .8), transparent 65%), linear-gradient(to bottom, var(--panel-2), var(--panel)); }
+.sheet-top h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(40px, 7vw, 64px); line-height: .95; margin: 0 0 8px; text-wrap: balance; }
+.close { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--bg); font-size: 18px; }
+.sheet-body { padding: 8px 28px 30px; }
+.sheet-body ul { padding-left: 18px; margin: 12px 0; display: grid; gap: 8px; color: #dcdce2; font-size: 15px; }
+.sheet-body .env { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
+.sheet-body .env h5 { margin: 0 0 8px; font-family: var(--font-mono); font-weight: 500; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+/* SEARCH + PROGRESS */
+.search { display: flex; align-items: center; gap: 8px; background: rgba(10,10,12,.7); border: 1px solid #3a3a45; border-radius: 4px; padding: 5px 10px; min-width: 0; }
+.search svg { flex: 0 0 auto; color: var(--muted); }
+.search input { background: none; border: 0; color: var(--fg); font: inherit; font-size: 14px; width: 150px; min-width: 0; outline: none; }
+.search:focus-within { border-color: var(--cyan); }
+.search input::placeholder { color: var(--muted); }
+@media (max-width: 720px) { .search input { width: 100px; } .nav { gap: 12px; } }
+.progress { position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: var(--red); transform-origin: left; transform: scaleX(0); }
+.card, .skill-box { transition: transform .18s ease-out, border-color .2s, box-shadow .2s, opacity .25s; }
+.top10 { transition: opacity .25s; }
+
+/* ROLE LINE */
+.role { font-family: var(--font-mono); font-size: 14px; letter-spacing: .18em; text-transform: uppercase; color: var(--cyan); margin: 0 0 14px; min-height: 22px; transition: opacity .3s; }
+.role.out { opacity: 0; }
+
+/* WHY WATCH */
+.sec-h { font-family: var(--font-display); font-weight: 400; font-size: 28px; letter-spacing: .04em; margin: 0 0 14px; display: flex; align-items: baseline; gap: 14px; }
+.sec-h small { font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; color: var(--muted); text-transform: uppercase; }
+.why { padding-block: 8px 32px; }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+.why-item { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 18px; display: grid; gap: 6px; align-content: start; }
+.why-item .k { font-family: var(--font-mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--red-soft); }
+.why-item h3 { font-family: var(--font-display); font-weight: 400; font-size: 30px; line-height: 1; margin: 0; letter-spacing: .02em; }
+.why-item p { margin: 0; color: var(--muted); font-size: 14px; }
+
+/* TIMELINE */
+.tl-sec { padding-block: 8px 36px; }
+.tl { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; position: relative; padding-top: 22px; }
+.tl::before { content: ""; position: absolute; top: 6px; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--line), var(--red)); }
+.tl-item { position: relative; padding-top: 14px; }
+.tl-item::before { content: ""; position: absolute; top: -22px; left: 0; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 3px solid var(--red); }
+.tl-item.last::before { background: var(--red); box-shadow: 0 0 0 6px rgba(229,9,20,.22); }
+.tl-item .d { font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; color: var(--muted); }
+.tl-item h4 { margin: 4px 0 2px; font-family: var(--font-display); font-weight: 400; font-size: 26px; line-height: 1; letter-spacing: .02em; }
+.tl-item p { margin: 0; font-size: 13.5px; color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .role { transition: none; }
+  .iso-scene { animation: none; }
+  .card, .plate { transition: none; }
+  .sheet { animation: none; }
+}
+</style>
+
+<nav class="nav" id="nav">
+  <div class="logo">SASI RAVIPATI</div>
+  <div class="nav-links">
+    <button data-go="top">Home</button>
+    <button data-go="exp">Experience</button>
+    <button data-go="why">Why watch</button>
+    <button data-go="stack">Pipeline</button>
+    <button data-go="skills">Skills</button>
+    <button data-go="timeline">Timeline</button>
+    <button data-go="contact">Contact</button>
+  </div>
+  <div class="spacer"></div>
+  <label class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="search" type="search" placeholder="Search tools, roles" aria-label="Search tools and roles" autocomplete="off"></label>
+  <div class="avatar" aria-hidden="true">SR</div>
+  <div class="progress" id="progress"></div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="stage" aria-hidden="true"></canvas>
+  <div class="hero-copy wrap">
+    <div class="badge-line"><b>D</b> A Data Engineering Original</div>
+    <h1>Sasi<br>Ravipati</h1>
+    <div class="role" id="role" aria-live="off">Data Engineer</div>
+    <div class="meta">
+      <span class="match">4+ years streaming</span>
+      <span>2020 – 2026</span>
+      <span class="chip-r">BFSI</span>
+      <span>Snowflake · dbt · DataStage</span>
+    </div>
+    <p class="logline">A software engineer who moves banking and insurance data from legacy ETL to Snowflake and dbt, then builds the validation agents and dashboards that prove every row arrived.</p>
+    <div class="btns">
+      <button class="btn play" data-go="exp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg>Play reel</button>
+      <button class="btn info" id="infoBtn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>More info</button>
+    </div>
+  </div>
+  <div class="pipe-tag">Sources → <span>Snowpipe</span> → Staging → <span>dbt marts</span> → Tableau</div>
+</header>
+
+<section class="row" id="exp">
+  <h2>Now Streaming <small>Experience</small></h2>
+  <div class="rail"><button class="arrow l" aria-label="Scroll left">‹</button><div class="scroller" id="rowExp"></div><button class="arrow r" aria-label="Scroll right">›</button></div>
+</section>
+
+<section class="row">
+  <h2>Top 10 Tools in Data Engineering <small>Today's lineup</small></h2>
+  <div class="rail"><button class="arrow l" aria-label="Scroll left">‹</button><div class="scroller" id="rowTop"></div><button class="arrow r" aria-label="Scroll right">›</button></div>
+</section>
+
+<section class="row">
+  <h2>Trending Pipelines <small>Highlights</small></h2>
+  <div class="rail"><button class="arrow l" aria-label="Scroll left">‹</button><div class="scroller" id="rowHi"></div><button class="arrow r" aria-label="Scroll right">›</button></div>
+</section>
+
+<section class="wrap why" id="why">
+  <h2 class="sec-h">Why Watch <small>What you get</small></h2>
+  <div class="why-grid">
+    <div class="why-item"><div class="k">Migration-ready</div><h3>Legacy to cloud</h3><p>Moved IBM DataStage pipelines to a Snowflake and dbt architecture that is easier to scale, reuse and deploy.</p></div>
+    <div class="why-item"><div class="k">Proof built in</div><h3>Data you can trust</h3><p>Python validation agents, dbt tests and reconciliation checks catch bad data before anyone downstream sees it.</p></div>
+    <div class="why-item"><div class="k">Audit-ready</div><h3>Evidence on file</h3><p>Source-to-target evidence, control reports, lineage and load history prepared for compliance sign-off.</p></div>
+    <div class="why-item"><div class="k">Team player</div><h3>Ships with others</h3><p>Works with analysts, QA and data teams, supports production, and mentors junior engineers.</p></div>
+  </div>
+</section>
+
+<section class="wrap stack-sec" id="stack">
+  <div class="stack-copy">
+    <h2>The Four-Layer Series</h2>
+    <p>Every dataset moves through landing, staging, curated and reporting layers. Pick a layer to light it up, or move the mouse over the stack to turn it.</p>
+    <div class="kv" id="layerList"></div>
+  </div>
+  <div class="iso" id="iso">
+    <div class="iso-scene" id="isoScene">
+      <div class="plate p1" data-i="0"><div>LANDING<small>RAW FILES</small></div></div>
+      <div class="plate p2" data-i="1"><div>STAGING<small>dbt STAGING</small></div></div>
+      <div class="plate p3" data-i="2"><div>CURATED<small>dbt INTERMEDIATE + MARTS</small></div></div>
+      <div class="plate p4" data-i="3"><div>REPORTING<small>TABLEAU</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="row" id="skills">
+  <h2>Browse by Genre <small>Skills</small></h2>
+  <div class="wrap skills-grid" id="skillsGrid"></div>
+</section>
+
+<section class="wrap tl-sec" id="timeline">
+  <h2 class="sec-h">Release Calendar <small>Career timeline</small></h2>
+  <div class="tl">
+    <div class="tl-item"><div class="d">01/2020</div><h4>B.S. at NIT</h4><p>Computer Science and Engineering.</p></div>
+    <div class="tl-item"><div class="d">12/2020</div><h4>Synergina</h4><p>Software Engineer on asset backed securitization ETL.</p></div>
+    <div class="tl-item"><div class="d">09/2022</div><h4>SAU Teaching Assistant</h4><p>Data analytics, databases and SQL labs.</p></div>
+    <div class="tl-item"><div class="d">01/2023</div><h4>M.S. at SAU</h4><p>Computer and Information Science.</p></div>
+    <div class="tl-item last"><div class="d">01/2024 – Now</div><h4>USAA</h4><p>Software Engineer on Snowflake, dbt and validation automation.</p></div>
+  </div>
+</section>
+
+<section class="row">
+  <h2>Education <small>Formation</small></h2>
+  <div class="rail"><div class="scroller" id="rowEdu"></div></div>
+</section>
+
+<footer class="wrap contact" id="contact">
+  <h2>Ready to join the best team</h2>
+  <p>Open to data engineering, analytics engineering and data platform roles where reliable pipelines and trusted data matter. Let's talk.</p>
+  <div class="contact-row">
+    <div class="copy"><code>sasikravipati@gmail.com</code><button data-copy="sasikravipati@gmail.com">Copy</button></div>
+    <div class="copy"><code>757-726-7774</code><button data-copy="757-726-7774">Copy</button></div>
+  </div>
+</footer>
+<div class="wrap foot">Sasi Ravipati · Data Engineer · Built from my career</div>
+
+<div class="modal" id="modal" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="sheet-top" id="mTop">
+      <button class="close" id="mClose" aria-label="Close">✕</button>
+      <div class="meta" id="mMeta"></div>
+      <h3 id="mTitle"></h3>
+      <div class="sub" id="mSub" style="color:#cfcfd6"></div>
+    </div>
+    <div class="sheet-body" id="mBody"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  var REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- DATA ---------- */
+  var EXP = [
+    { h: 350, tag: 'Current', now: true, title: 'USAA', sub: 'Software Engineer · San Antonio, TX', dates: '01/2024 – Present', role: 'Federal Savings Bank',
+      blurb: 'Legacy DataStage to Snowflake and dbt, validation agents, Tableau and AML data support.',
+      bullets: [
+        'Designed and supported end-to-end ETL/ELT pipelines that ingest, transform, validate and publish banking, transaction, customer and account data.',
+        'Migrated legacy IBM DataStage pipelines to a Snowflake and dbt cloud architecture, improving scalability, modularity, reuse and deployment control.',
+        'Loaded CSV, JSON, DB2, Oracle, Teradata, flat files and cloud-staged files into Snowflake landing, staging, curated and reporting layers.',
+        'Built dbt staging, intermediate and mart models plus reusable macros for audit columns, surrogate keys, deduplication and incremental filters.',
+        'Used Snowflake Streams and Tasks for incremental processing, and Time Travel and Zero Copy Cloning for recovery and release testing.',
+        'Automated Snowpipe ingestion with file-arrival checks, load-history checks and rejected-record reviews.',
+        'Wrote Python data validation agents and Git validation agents that gate code before promotion.',
+        'Built Tableau reconciliation and data-quality dashboards, and validated migrated workbooks, extracts and refresh schedules.',
+        'Scheduled batches in Control-M and shipped through Git, GitLab/GitHub, Azure DevOps, SnowSQL and UCD.',
+        'Supported AML data processing: NICE Actimize-aligned feeds, CDD and SAM datasets, and audit-ready evidence for compliance teams.',
+        'Mentored junior engineers on DataStage, dbt, SQL, Snowflake, Git, Control-M and Tableau validation.'
+      ],
+      env: ['IBM DataStage','dbt','Snowflake','Snowpipe','SnowSQL','Streams','Tasks','Time Travel','Zero Copy Cloning','Oracle','DB2','Teradata','SQL','Python','UNIX','Control-M','Git','GitLab','GitHub','Azure DevOps','UCD','QTest','Jira','Tableau','SPSS Modeler','Hadoop','Hive','Azure APIM','Postman','ServiceNow'] },
+    { h: 205, tag: 'Season 2', title: 'Southern Arkansas University', sub: 'Teaching Assistant · Magnolia, AR', dates: '09/2022 – 02/2023', role: 'Data Analytics & Databases',
+      blurb: 'Taught ETL, SQL and warehousing labs to undergraduates.',
+      bullets: [
+        'Assisted faculty in undergraduate courses on data analytics, database management, SQL and data engineering.',
+        'Led lab sessions on SQL, database design, data transformation and visualization.',
+        'Explained ETL, normalization, joins, aggregations and performance optimization, and helped students debug SQL queries and pipelines.',
+        'Helped students build dashboards in Tableau, and ran practical sessions on SQL Server, Hadoop and Hive.',
+        'Graded assignments and projects, prepared lecture materials, lab exercises and sample datasets, and mentored students one on one.'
+      ],
+      env: ['SQL','SQL Server','Tableau','IBM DataStage','Hadoop','Hive','Git','Excel','Jira','UNIX','Data Warehousing','ETL Concepts'] },
+    { h: 265, tag: 'Season 1', title: 'Synergina Pvt Ltd', sub: 'Software Engineer', dates: '12/2020 – 11/2021', role: 'Asset Backed Securitization',
+      blurb: 'Reusable DataStage jobs, CDC and SCD logic, Hadoop and Hive archiving.',
+      bullets: [
+        'Turned business requirements into source-to-target mappings, high-level and low-level designs, and ETL deliverables.',
+        'Built reusable DataStage jobs to extract, cleanse, transform and load securitization data into staging, warehouse and Hadoop/Hive.',
+        'Implemented CDC and SCD logic for historical tracking and incremental processing.',
+        'Designed reusable extract and load frameworks that cut duplicate logic and simplified support.',
+        'Scheduled and monitored jobs in Control-M, reviewed logs, resolved errors and reran failed cycles.',
+        'Built Hadoop/Hive archiving for retention, reprocessing and historical analysis.',
+        'Tuned DataStage partitioning, sorting, lookups, transformer logic and joins.',
+        'Led onsite and offshore coordination, and wrote LLD, HLD, runbook and deployment documents.'
+      ],
+      env: ['IBM DataStage','DB2','Oracle 11g','SQL','UNIX','Control-M','Git','Hadoop','Hive','Jira','UCD'] }
+  ];
+
+  var TOP = ['Snowflake','Azure DevOps','Python','dbt','IBM DataStage','SQL','Control-M','Tableau','Informatica IICS','Java'];
+
+  var HI = [
+    { h: 350, tag: 'Automation', title: 'Data Validation Agents', blurb: 'Schema drift, duplicates, null and blank checks, data types, accepted values, referential integrity, anomaly thresholds, freshness and source-to-target reconciliation.' },
+    { h: 205, tag: 'CI gates', title: 'Git Validation Agents', blurb: 'Branch naming, commit messages, pull-request checklists, dbt dependencies, SQL quality, test coverage, configuration and deployment-readiness gates.' },
+    { h: 30, tag: 'Reporting', title: 'Tableau Reporting', blurb: 'Reconciliation and data-quality dashboards, refresh monitoring, extract and data-source checks, migration validation and defect resolution.' },
+    { h: 195, tag: 'Cloud', title: 'Snowflake Cloud Processing', blurb: 'Snowpipe ingestion, Streams and Tasks, dbt transformations, Time Travel recovery, clone testing, warehouse tuning and cloud migration validation.' },
+    { h: 285, tag: 'Compliance', title: 'AML / NICE Actimize Support', blurb: 'Actimize-related feeds, CDD and SAM validation, alert generation support, exception review and audit query responses with reconciliation evidence.' },
+    { h: 140, tag: 'Releases', title: 'Release & Audit Validation', blurb: 'Pre- and post-deployment checklists covering row counts, job status, rejected records, dbt tests, Control-M completion and report refresh.' }
+  ];
+
+  var LAYERS = [
+    ['Landing', 'CSV, JSON, DB2, Oracle, Teradata, flat and cloud-staged files arrive through Snowpipe with file-arrival and load-history checks.'],
+    ['Staging', 'dbt staging models standardize types, cleanse sources and filter incremental loads.'],
+    ['Curated', 'Intermediate models and marts apply business rules, dedupe records and create reporting-ready datasets.'],
+    ['Reporting', 'Tableau reconciliation and data-quality dashboards watch row counts, SLAs, missing files and rejected records.']
+  ];
+
+  var SKILLS = [
+    ['Cloud & Warehouse', ['Snowflake','Snowpipe','Streams','Tasks','Time Travel','Zero Copy Cloning','AWS','Azure DevOps'], ['Snowflake']],
+    ['ETL / ELT', ['dbt','IBM DataStage','Informatica IICS','Control-M','CDC','SCD Type 1/2','Incremental loads','Data replication'], ['dbt','IBM DataStage']],
+    ['Languages', ['SQL','Python','Java','JavaScript','UNIX Shell','SnowSQL'], ['SQL','Python']],
+    ['Databases & Big Data', ['Oracle','DB2','Teradata','SQL Server','Netezza','Hadoop','HDFS','Hive','Sqoop'], []],
+    ['CI / CD & Delivery', ['Git','GitLab','GitHub','Azure DevOps','UCD','QTest','Jira','ServiceNow'], []],
+    ['Reporting & Domain', ['Tableau','Data-quality dashboards','Tableau content migration','AML','NICE Actimize','CDD','SAM'], ['Tableau']]
+  ];
+
+  var EDU = [
+    { h: 350, tag: 'Graduate', title: 'Southern Arkansas University', sub: "Master's Degree · Computer and Information Science", dates: '01/2023', bullets: ["Master's degree in Computer and Information Science, completed 01/2023.", 'Worked as a Teaching Assistant for Data Analytics, Database Management and SQL courses from 09/2022 to 02/2023.'] },
+    { h: 205, tag: 'Undergraduate', title: 'NIT', sub: "Bachelor's Degree · Computer Science and Engineering", dates: '01/2020', bullets: ["Bachelor's degree in Computer Science and Engineering, completed 01/2020."] }
+  ];
+
+  /* ---------- HELPERS ---------- */
+  function el(html) { var d = document.createElement('div'); d.innerHTML = html.trim(); return d.firstChild; }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]; }); }
+
+  function tilt(card) {
+    if (REDUCED) return;
+    card.addEventListener('pointermove', function (e) {
+      if (e.pointerType === 'touch') return;
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.setProperty('--ry', (x * 14) + 'deg');
+      card.style.setProperty('--rx', (-y * 14) + 'deg');
+    });
+    card.addEventListener('pointerleave', function () { card.style.setProperty('--ry', '0deg'); card.style.setProperty('--rx', '0deg'); });
+  }
+
+  /* ---------- BUILD ROWS ---------- */
+  var rowExp = document.getElementById('rowExp');
+  EXP.forEach(function (e, i) {
+    var c = el('<button class="card wide" style="--h:' + e.h + '"><div class="tag"><span>' + esc(e.dates) + '</span>' + (e.now ? '<span class="now">● Current</span>' : '<span>' + esc(e.tag) + '</span>') + '</div><h3>' + esc(e.title) + '</h3><div class="sub">' + esc(e.sub) + '</div><p>' + esc(e.blurb) + '</p><div class="more"><i>▶</i> Watch the details</div></button>');
+    c.addEventListener('click', function () { openModal(e); });
+    tilt(c); rowExp.appendChild(c);
+  });
+
+  var rowTop = document.getElementById('rowTop');
+  TOP.forEach(function (t, i) {
+    var wrap = el('<div class="top10"><div class="num">' + (i + 1) + '</div><div class="card" style="--h:' + ((i * 37 + 340) % 360) + '"><div class="tag"><span>Top 10</span></div><h3>' + esc(t) + '</h3></div></div>');
+    tilt(wrap.querySelector('.card')); rowTop.appendChild(wrap);
+  });
+
+  var rowHi = document.getElementById('rowHi');
+  HI.forEach(function (x) {
+    var c = el('<button class="card" style="--h:' + x.h + '"><div class="tag"><span>' + esc(x.tag) + '</span></div><h3>' + esc(x.title) + '</h3><p>' + esc(x.blurb) + '</p><div class="more"><i>+</i> More info</div></button>');
+    c.addEventListener('click', function () { openModal({ h: x.h, tag: x.tag, title: x.title, sub: x.tag, dates: '', bullets: [x.blurb], env: [] }); });
+    tilt(c); rowHi.appendChild(c);
+  });
+
+  var rowEdu = document.getElementById('rowEdu');
+  EDU.forEach(function (x) {
+    var c = el('<button class="card wide" style="--h:' + x.h + '; min-height:200px"><div class="tag"><span>' + esc(x.dates) + '</span><span>' + esc(x.tag) + '</span></div><h3>' + esc(x.title) + '</h3><div class="sub">' + esc(x.sub) + '</div></button>');
+    c.addEventListener('click', function () { openModal({ h: x.h, tag: x.tag, title: x.title, sub: x.sub, dates: x.dates, bullets: x.bullets, env: [] }); });
+    tilt(c); rowEdu.appendChild(c);
+  });
+
+  var grid = document.getElementById('skillsGrid');
+  SKILLS.forEach(function (s) {
+    var hot = s[2];
+    grid.appendChild(el('<div class="skill-box"><h4>' + esc(s[0]) + '</h4><div class="pills">' + s[1].map(function (p) { return '<span class="pill' + (hot.indexOf(p) > -1 ? ' hot' : '') + '">' + esc(p) + '</span>'; }).join('') + '</div></div>'));
+  });
+
+  /* arrows */
+  document.querySelectorAll('.rail').forEach(function (rail) {
+    var sc = rail.querySelector('.scroller');
+    rail.querySelectorAll('.arrow').forEach(function (a) {
+      a.addEventListener('click', function () { sc.scrollBy({ left: (a.classList.contains('l') ? -1 : 1) * sc.clientWidth * 0.8, behavior: REDUCED ? 'auto' : 'smooth' }); });
+    });
+  });
+
+  /* ---------- MODAL ---------- */
+  var modal = document.getElementById('modal'), lastFocus = null;
+  function openModal(d) {
+    lastFocus = document.activeElement;
+    document.getElementById('mTop').style.setProperty('--h', d.h);
+    document.getElementById('mTitle').textContent = d.title;
+    document.getElementById('mSub').textContent = d.sub || '';
+    document.getElementById('mMeta').innerHTML = (d.now ? '<span class="match">Current role</span>' : '') + (d.dates ? '<span>' + esc(d.dates) + '</span>' : '') + (d.role ? '<span class="chip-r">' + esc(d.role) + '</span>' : '');
+    document.getElementById('mBody').innerHTML = '<ul>' + d.bullets.map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('') + '</ul>' + (d.env && d.env.length ? '<div class="env"><h5>Cast &amp; tools</h5><div class="pills">' + d.env.map(function (p) { return '<span class="pill">' + esc(p) + '</span>'; }).join('') + '</div></div>' : '');
+    modal.hidden = false; document.body.style.overflow = 'hidden';
+    document.getElementById('mClose').focus();
+  }
+  function closeModal() { modal.hidden = true; document.body.style.overflow = ''; if (lastFocus) lastFocus.focus(); }
+  document.getElementById('mClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+  document.getElementById('infoBtn').addEventListener('click', function () {
+    openModal({ h: 350, tag: 'About', title: 'Sasi Ravipati', sub: 'Software Engineer · Data Engineering', dates: '4+ years', role: 'Banking · Financial Services · Insurance',
+      bullets: [
+        'Delivers enterprise ETL/ELT, high-volume data processing, data warehousing, cloud migration, reporting, data validation and production support.',
+        'Designs scalable pipelines for structured and semi-structured data: batch, incremental loads, CDC, SCD Type 1/2, replication, and landing, staging and curated layers.',
+        'Builds automated data validation agents and Git validation agents, and Tableau reconciliation and data-quality dashboards.',
+        'Works with AML data, including NICE Actimize alert feeds, CDD and SAM datasets, and audit-related business queries.'
+      ], env: [] });
+  });
+
+  /* ---------- NAV ---------- */
+  var nav = document.getElementById('nav');
+  function onScroll() { nav.classList.toggle('solid', window.scrollY > 40); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  document.querySelectorAll('[data-go]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = document.getElementById(b.getAttribute('data-go'));
+      if (t) t.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
+    });
+  });
+
+  /* ---------- COPY ---------- */
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var text = b.getAttribute('data-copy');
+      function done() { var o = b.textContent; b.textContent = 'Copied'; setTimeout(function () { b.textContent = o; }, 1400); }
+      function fallback() { var r = document.createRange(); r.selectNodeContents(b.previousElementSibling); var s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Selected'; setTimeout(function () { b.textContent = 'Copy'; }, 1400); }
+      try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+    });
+  });
+
+  /* ---------- LAYER STACK ---------- */
+  var plates = document.querySelectorAll('.plate'), list = document.getElementById('layerList'), iso = document.getElementById('iso'), scene = document.getElementById('isoScene');
+  LAYERS.forEach(function (l, i) {
+    var b = el('<button aria-pressed="false"><strong>' + esc(l[0]) + '</strong><span>' + esc(l[1]) + '</span></button>');
+    b.addEventListener('click', function () { setLayer(i); });
+    list.appendChild(b);
+  });
+  var current = -1;
+  function setLayer(i) {
+    current = (current === i) ? -1 : i;
+    plates.forEach(function (p, k) { p.classList.toggle('on', k === current); });
+    Array.prototype.forEach.call(list.children, function (b, k) { b.setAttribute('aria-pressed', k === current ? 'true' : 'false'); });
+    iso.classList.toggle('spread', current !== -1);
+  }
+  setLayer(2);
+  if (!REDUCED) {
+    iso.addEventListener('pointermove', function (e) {
+      var r = iso.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+      scene.style.setProperty('--tz', (-38 + x * 40) + 'deg');
+      scene.style.setProperty('--tx', (58 - y * 20) + 'deg');
+    });
+    iso.addEventListener('pointerleave', function () { scene.style.setProperty('--tz', '-38deg'); scene.style.setProperty('--tx', '58deg'); });
+  }
+
+  /* ---------- SEARCH, PROGRESS, ROLE LINE ---------- */
+  var searchEl = document.getElementById('search');
+  function runSearch() {
+    var q = searchEl.value.trim().toLowerCase(), first = null;
+    document.querySelectorAll('.row .card, .skill-box, .why-item, .tl-item').forEach(function (c) {
+      var hit = !q || c.textContent.toLowerCase().indexOf(q) > -1;
+      var target = c.closest('.top10') || c;
+      target.style.opacity = hit ? '' : '0.15';
+      if (hit && q && !first) first = c;
+    });
+    return first;
+  }
+  searchEl.addEventListener('input', runSearch);
+  searchEl.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { var f = runSearch(); if (f) f.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'center', inline: 'center' }); }
+    if (e.key === 'Escape') { searchEl.value = ''; runSearch(); }
+  });
+
+  var bar = document.getElementById('progress');
+  function prog() { var h = document.documentElement.scrollHeight - window.innerHeight; bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, window.scrollY / h) : 0) + ')'; }
+  window.addEventListener('scroll', prog, { passive: true }); prog();
+
+  var roleEl = document.getElementById('role');
+  var ROLES = ['Data Engineer', 'ETL / ELT Engineer', 'Snowflake + dbt Developer', 'Tableau Admin', 'Release Coordinator', 'Data Quality Builder'], ri = 0;
+  if (!REDUCED) setInterval(function () {
+    roleEl.classList.add('out');
+    setTimeout(function () { ri = (ri + 1) % ROLES.length; roleEl.textContent = ROLES[ri]; roleEl.classList.remove('out'); }, 320);
+  }, 2800);
+
+  /* ---------- 3D HERO ---------- */
+  var canvas = document.getElementById('stage');
+  if (window.THREE) {
+    var T = THREE;
+    var renderer = new T.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    var scene3 = new T.Scene();
+    scene3.fog = new T.Fog(0x0a0a0c, 12, 30);
+    var camera = new T.PerspectiveCamera(45, 1, 0.1, 100);
+    var group = new T.Group(); scene3.add(group);
+
+    var counts = [7, 6, 8, 5, 3], xs = [-7.2, -3.6, 0, 3.6, 7.2];
+    var cols = [0x38bdf8, 0x7a7aff, 0xe50914, 0xff5a62, 0x46d369];
+    var layers = [], seed = 7;
+    function rnd() { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
+    counts.forEach(function (n, li) {
+      var arr = [];
+      for (var i = 0; i < n; i++) {
+        var y = (i - (n - 1) / 2) * (6.2 / Math.max(n - 1, 4)) * 1.1;
+        var z = (rnd() - 0.5) * 4;
+        var geo = li === 0 ? new T.BoxGeometry(.5, .5, .5) : li === 4 ? new T.OctahedronGeometry(.45) : new T.IcosahedronGeometry(.34, 0);
+        var m = new T.Mesh(geo, new T.MeshBasicMaterial({ color: cols[li], wireframe: true, transparent: true, opacity: .9 }));
+        m.position.set(xs[li], y, z); group.add(m);
+        var core = new T.Mesh(new T.SphereGeometry(.09, 8, 8), new T.MeshBasicMaterial({ color: cols[li] })); core.position.copy(m.position); group.add(core);
+        arr.push({ mesh: m, pos: m.position.clone() });
+      }
+      layers.push(arr);
+    });
+
+    var edges = [], linePts = [];
+    for (var li = 0; li < layers.length - 1; li++) {
+      layers[li].forEach(function (a) {
+        var k = 2 + Math.floor(rnd() * 2);
+        for (var j = 0; j < k; j++) {
+          var b = layers[li + 1][Math.floor(rnd() * layers[li + 1].length)];
+          edges.push({ a: a.pos, b: b.pos, li: li });
+          linePts.push(a.pos.x, a.pos.y, a.pos.z, b.pos.x, b.pos.y, b.pos.z);
+        }
+      });
+    }
+    var lg = new T.BufferGeometry(); lg.setAttribute('position', new T.Float32BufferAttribute(linePts, 3));
+    group.add(new T.LineSegments(lg, new T.LineBasicMaterial({ color: 0x3a3a4a, transparent: true, opacity: .55 })));
+
+    var N = 520, pp = new Float32Array(N * 3), pc = new Float32Array(N * 3), pe = [], pt = [], ps = [];
+    var tmp = new T.Color();
+    for (var i = 0; i < N; i++) {
+      var ed = edges[Math.floor(rnd() * edges.length)]; pe.push(ed); pt.push(rnd()); ps.push(0.18 + rnd() * 0.3);
+      tmp.setHex(cols[ed.li]); pc[i * 3] = tmp.r; pc[i * 3 + 1] = tmp.g; pc[i * 3 + 2] = tmp.b;
+    }
+    var pg = new T.BufferGeometry();
+    pg.setAttribute('position', new T.BufferAttribute(pp, 3)); pg.setAttribute('color', new T.BufferAttribute(pc, 3));
+    var points = new T.Points(pg, new T.PointsMaterial({ size: .13, vertexColors: true, transparent: true, opacity: .95, depthWrite: false }));
+    group.add(points);
+
+    function place() {
+      for (var i = 0; i < N; i++) {
+        var e = pe[i], t = pt[i];
+        pp[i * 3] = e.a.x + (e.b.x - e.a.x) * t; pp[i * 3 + 1] = e.a.y + (e.b.y - e.a.y) * t; pp[i * 3 + 2] = e.a.z + (e.b.z - e.a.z) * t;
+      }
+      pg.attributes.position.needsUpdate = true;
+    }
+    place();
+
+    var mx = 0, my = 0, tmx = 0, tmy = 0, W = 1, H = 1;
+    function resize() {
+      var r = canvas.parentElement.getBoundingClientRect(); W = r.width; H = r.height;
+      renderer.setSize(W, H, false); camera.aspect = W / H;
+      var narrow = W < 720;
+      camera.position.set(narrow ? 0 : 2.4, 1.2, narrow ? 27 : 17); camera.lookAt(narrow ? 0 : 2.2, 0, 0);
+      camera.updateProjectionMatrix();
+    }
+    resize(); window.addEventListener('resize', resize);
+    canvas.parentElement.addEventListener('pointermove', function (e) { var r = canvas.getBoundingClientRect(); tmx = ((e.clientX - r.left) / r.width - 0.5); tmy = ((e.clientY - r.top) / r.height - 0.5); });
+
+    var visible = true;
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }, { threshold: 0 }).observe(canvas);
+    var clock = new T.Clock();
+    function frame() {
+      requestAnimationFrame(frame);
+      if (!visible) return;
+      var dt = Math.min(clock.getDelta(), 0.05), time = clock.elapsedTime;
+      mx += (tmx - mx) * 0.05; my += (tmy - my) * 0.05;
+      group.rotation.y = -0.38 + mx * 0.5 + Math.sin(time * 0.25) * 0.08;
+      group.rotation.x = 0.12 + my * 0.3;
+      layers.forEach(function (l, li) { l.forEach(function (n, i) { n.mesh.rotation.x += dt * 0.4; n.mesh.rotation.y += dt * (0.3 + li * 0.05); }); });
+      if (!REDUCED) {
+        for (var i = 0; i < N; i++) { pt[i] += ps[i] * dt; if (pt[i] > 1) { pt[i] = 0; } }
+        place();
+      }
+      renderer.render(scene3, camera);
+    }
+    frame();
+  }
+})();
+</script>
+
+</body></html>
