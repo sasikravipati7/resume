@@ -1,2 +1,0 @@
-# resume
-Sasi's Resume
